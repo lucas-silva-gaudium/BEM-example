@@ -1,1 +1,62 @@
 @use "./reset" as *;
+
+/* BEM - Block Element Modifier */
+
+/* 
+Bloco: user-card
+O "bloco" é a parte independente e reutilizável da interface, geralmente ela é a classe do componente.
+EX: Seu componente é o formulário de acesso? O Block pode se chamar .form-login, cabeçalho? Pode se chamar .header, e etc.
+Aqui, o `.user-card` representa o cartão do usuário como um todo, representa o componente.
+*/
+.user-card {
+  background: #f9f9f9;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  text-align: center;
+  width: fit-content;
+  margin: 24px auto;
+
+  /*
+  Elemento: __name
+  Um "elemento" é uma parte interna do bloco que depende dele para existir. O elemento compões o componente (Block).
+  A sintaxe `&__name` em SCSS gera `.user-card__name` no CSS.
+  O `&` representa o seletor pai (no caso, `.user-card`), e estamos apenas "concatenando" com o nome da classe pai.
+  */
+  &__name {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  /*
+  Elemento: __button
+  Outro elemento do bloco. O botão pertence ao cartão do usuário.
+  O SCSS `&__button` vira `.user-card__button` no CSS final.
+  Um bloco pode ter N elementos. Tudo que compões o bloco, é um elemento.
+  */
+  &__button {
+    background-color: #007bff;
+    border-radius: 4px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+
+    /*
+    Modificador: --following
+    Um "modificador" altera o estado, aparência ou comportamento de um bloco ou elemento.
+    Aqui, `.user-card__button--following` representa o botão em um estado de "seguindo".
+    A sintaxe `&--following` concatena com `.user-card__button`, resultando em `.user-card__button--following`.
+    Assim como um Bloco pode ter N Elementos, um Elemento pode ter N Modificações, por exemplo esse botão.
+    Ele pode ter estados como: Desabilitado, Transparente (ghost), uma classe para ter animação diferente e etc.
+    */
+    &--following {
+      background-color: #28a745; // Muda a cor do elemento
+    }
+    &--ghost {
+      color: #007bff; // Muda cor do texto do elemento
+      background-color: transparent; // Tira o fundo do elemento
+      border: solid 1px; // Adiciona bordas
+    }
+  }
+}
